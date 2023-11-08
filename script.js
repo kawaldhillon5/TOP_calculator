@@ -13,54 +13,78 @@ function calculate(){
     clear.addEventListener("click", () => {
         content.textContent = "";
         result.textContent = "";
+        first_num = 0, second_num = 0, operator = "";
+        computed_num = 0;
+        to_be_first = "", to_be_second  = "", to_be_processed = "",arr_for_processing = [];
         console.log('clear');
     });
-    del.addEventListener("click", () => {
-        
+    del.addEventListener("click", (e) => {
+        let val = e.target.value;
+        process(val);
     });
     let first_num = 0, second_num = 0, operator = "";
     let computed_num = 0;
-    let to_be_first = "", to_be_second  = "";
+    let to_be_first = "", to_be_second  = "", to_be_processed = "",arr_for_processing = [];
     content.textContent = "";
-    function process(val) {
-    
-        if(val >= "0" && val <="9"){
-            if(first_num == 0){
-                to_be_first += val;
-                console.log("toBeP for first = ",to_be_first)
-                content.textContent += val;
-            } else {
-                to_be_second += val;
-                console.log("toBeP for second = ",to_be_second)
-                content.textContent += val;
-            }
-        } else if(val == "+" || val == "-" || val == "*" || val == "/"){
-            if(to_be_first != ""){
-            if(to_be_first.length != 0 && to_be_second.length != 0){
-                console.log("it work");
+
+    function process_arr(arr){
+        arr.push("=");
+        arr.forEach(val => {
+            if(val >= "0" && val <="9"){
+                if(first_num == 0){
+                    to_be_first += val;
+                    console.log("toBeP for first = ",to_be_first)
+                } else {
+                    to_be_second += val;
+                    console.log("toBeP for second = ",to_be_second)
+                }
+            } else if(val == "+" || val == "-" || val == "*" || val == "/"){
+                if(to_be_first != ""){
+                if(to_be_first.length != 0 && to_be_second.length != 0){
+                    console.log("it work");
+                    second_num = Number(to_be_second);
+                    to_be_second = "";
+                    console.log(first_num, second_num , operator)
+                    first_num = comp(first_num,second_num,operator);
+                    operator = val;
+                } else {
+                operator = val;
+                first_num = Number(to_be_first);
+                 }
+                }
+            } else if(val == "="){
                 second_num = Number(to_be_second);
                 to_be_second = "";
-                console.log(first_num, second_num , operator)
-                first_num = comp(first_num,second_num,operator);
-                operator = val;
-                content.textContent += " "+operator+" ";
-            } else {
-            operator = val;
-            content.textContent += " "+operator+" ";
-            first_num = Number(to_be_first);
-             }
-            }
+                to_be_first = "";
+                computed_num = comp(first_num,second_num,operator);
+                console.log("first = ",first_num," ","second = ",second_num," ",operator)
+                console.log(computed_num);
+                result.textContent = computed_num;
+                first_num = 0, second_num = 0, operator = "";
+                return computed_num;
+            }    
+        });
+    }
+    function process(val) {
+        if(val == "del"){
+            to_be_processed = to_be_processed.slice(0,to_be_processed.length-1);
+            content.textContent = to_be_processed;
+            result.textContent = "";
+        } else if(val == "+" || val == "-" || val == "*" || val == "/" || val == "."){
+                if(to_be_processed.includes(val,to_be_processed.length-1)|| to_be_processed == ""){
+                } else {
+                    to_be_processed += val;
+                    content.textContent = to_be_processed;
+                }
         } else if(val == "="){
-            second_num = Number(to_be_second);
-            to_be_second = "";
-            to_be_first = "";
-            computed_num = comp(first_num,second_num,operator);
-            console.log("first = ",first_num," ","second = ",second_num," ",operator)
-            console.log(computed_num);
-            result.textContent = computed_num;
-            first_num = 0, second_num = 0, operator = "";
-            return computed_num;
-        }    
+            process_arr(arr_for_processing = Array.from(to_be_processed));
+            console.log(arr_for_processing);
+        } 
+         else {
+            to_be_processed += val;
+            content.textContent = to_be_processed;
+        }
+        
     }
     function create_buttons(){
         let a  = 4;
