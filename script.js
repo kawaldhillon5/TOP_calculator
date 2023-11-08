@@ -8,61 +8,11 @@ let button_values = [["1","4","7","."],["2","5","8","0"],["3","6","9",'='],['+',
 
 calculate();
 
-<<<<<<< HEAD
 function calculate(){
     create_buttons();
     clear.addEventListener("click", () => {
         content.textContent = "";
         result.textContent = "";
-=======
-create_buttons();
-
-function create_buttons(){
-    let a  = 4;
-    for(let i = 0;i<a;i++){
-        const coloums = document.createElement("div");
-        coloums.classList.add("coloum",i);
-        buttons.appendChild(coloums);
-        for(let j = 0;j<a;j++){
-            const button = document.createElement("button");
-            button.classList.add("button",i+"*"+j);
-            button.textContent = button_names[i][j];
-            button.value = button_values[i][j];
-            coloums.appendChild(button);
-            button.addEventListener("click",(e) =>{
-                 let val = e.target.value;
-                 compute(val);
-                 console.log(val);
-            });
-        }
-    }
-}
-
-function compute(val) {
-    
-    if(val >= 1 && val <=9){
-        if(first_num == 0){
-            first_num = Number(val);
-        } else {
-            second_num = Number(val);
-        }
-    } else if(val == "+" || val == "-" || val == "*" || val == "/"){
-        operator = val;
-    } else if(val == "="){
-        switch (operator){
-            case "+": computed_num = first_num + second_num;
-                break;
-            case "-": computed_num = first_num - second_num;
-                break;
-            case "*": computed_num = first_num * second_num;
-                break;
-            case "/": computed_num = first_num / second_num;
-                break;
-        }
-        console.log("first = ",first_num," ","second = ",second_num," ",operator)
-        console.log(computed_num);
-        result.textContent = computed_num;
->>>>>>> main
         first_num = 0, second_num = 0, operator = "";
         computed_num = 0;
         to_be_first = "", to_be_second  = "", to_be_processed = "",arr_for_processing = [];
@@ -172,7 +122,6 @@ function compute(val) {
         console.log("comp ", to_be_first, " ", to_be_second);
         return computed;
     }
-    content.textContent = `${first_num} ${operator} ${second_num}`; 
 
 }
 
