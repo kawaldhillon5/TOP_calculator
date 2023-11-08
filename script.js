@@ -30,7 +30,7 @@ function calculate(){
     function process_arr(arr){
         arr.push("=");
         arr.forEach(val => {
-            if(val >= "0" && val <="9"){
+            if(val >= "0" && val <="9" || val == "."){
                 if(first_num == 0){
                     to_be_first += val;
                     console.log("toBeP for first = ",to_be_first)
