@@ -54,7 +54,10 @@ function compute(val) {
         }
         console.log("first = ",first_num," ","second = ",second_num," ",operator)
         console.log(computed_num);
+        result.textContent = computed_num;
         first_num = 0, second_num = 0, operator = "";
         return computed_num;
     }
+    content.textContent = `${first_num} ${operator} ${second_num}`; 
+
 }
