@@ -1,7 +1,8 @@
-const calc = document.querySelector(".main");
 const content = document.querySelector(".content");
 const result = document.querySelector(".result")
 const buttons = document.querySelector(".lower_buttons")
+const clear = document.querySelector(".clear");
+const del = document.querySelector(".delete");
 let button_names = [['1','4','7','.'],['2','5','8','0'],['3','6','9','='],['+','-','×','÷']];
 let button_values = [["1","4","7","."],["2","5","8","0"],["3","6","9",'='],['+','-','*','/']]; 
 
@@ -9,6 +10,14 @@ calculate();
 
 function calculate(){
     create_buttons();
+    clear.addEventListener("click", () => {
+        content.textContent = "";
+        result.textContent = "";
+        console.log('clear');
+    });
+    del.addEventListener("click", () => {
+        
+    });
     let first_num = 0, second_num = 0, operator = "";
     let computed_num = 0;
     let to_be_first = "", to_be_second  = "";
@@ -86,6 +95,7 @@ function calculate(){
             case "/": computed = a / b;
                 break;
         }
+        console.log("comp ", to_be_first, " ", to_be_second);
         return computed;
     }
 }
