@@ -70,13 +70,23 @@ function calculate(){
             to_be_processed = to_be_processed.slice(0,to_be_processed.length-1);
             content.textContent = to_be_processed;
             result.textContent = "";
-        } else if(val == "+" || val == "-" || val == "*" || val == "/" || val == "."){
+        } else if(val == "+" || val == "-" || val == "*" || val == "/"){
                 if(to_be_processed.includes(val,to_be_processed.length-1)|| to_be_processed == ""){
                 } else {
                     to_be_processed += val;
                     content.textContent = to_be_processed;
                 }
-        } else if(val == "="){
+        } else if(val == "."){
+            if(to_be_processed.includes(val,to_be_processed.length-1)|| to_be_processed == ""){
+            } 
+            else if(to_be_processed.lastIndexOf(".")>to_be_processed.lastIndexOf("+"||"-"||"*"||"/") ){
+            }
+            else {
+                to_be_processed += val;
+                content.textContent = to_be_processed;
+            }
+        } 
+         else if(val == "="){
             process_arr(arr_for_processing = Array.from(to_be_processed));
             console.log(arr_for_processing);
         } 
