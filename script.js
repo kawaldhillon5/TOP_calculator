@@ -79,8 +79,11 @@ function calculate(){
         } else if(val == "."){
             if(to_be_processed.includes(val,to_be_processed.length-1)|| to_be_processed == ""){
             } 
-            else if(to_be_processed.lastIndexOf(".")>to_be_processed.lastIndexOf("+"||"-"||"*"||"/") ){
-            }
+              else if((to_be_processed.lastIndexOf(".")>to_be_processed.lastIndexOf("+"))&&(to_be_processed.lastIndexOf(".")>to_be_processed.lastIndexOf("-"))&&(to_be_processed.lastIndexOf(".")>to_be_processed.lastIndexOf("*"))&&(to_be_processed.lastIndexOf(".")>to_be_processed.lastIndexOf("/"))){
+             } //else if(to_be_processed.lastIndexOf(".")>to_be_processed.lastIndexOf("-")){
+            // } else if(to_be_processed.lastIndexOf(".")>to_be_processed.lastIndexOf("*")){
+            // } else if(to_be_processed.lastIndexOf(".")>to_be_processed.lastIndexOf("/")){
+            // }
             else {
                 to_be_processed += val;
                 content.textContent = to_be_processed;
